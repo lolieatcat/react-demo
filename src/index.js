@@ -70,6 +70,7 @@ class Game extends React.Component {
       stepNumber: 0,
       xIsNext: true,
       boldIndex: -1,
+      reverse: false
     };
   }
 
@@ -109,6 +110,10 @@ class Game extends React.Component {
       );
     });
 
+    if(this.state.reverse) {
+      moves.reverse()
+    }
+
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
@@ -126,7 +131,13 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{moves}</ol>
+          <div>
+            <button
+              onClick={() => { this.setState({ reverse: !this.state.reverse }) }}
+            >
+              Sort</button>
+          </div>
+          <ol reversed={this.state.reverse}>{moves}</ol>
         </div>
       </div>
     );
