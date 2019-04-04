@@ -93,7 +93,7 @@ class Game extends React.Component {
         'Go to move #' + move + '(' + step.pos[0] + ',' + step.pos[1] + ')' :
         'Go to game start';
 
-      if (this.state.boldIndex == move) {
+      if (this.state.boldIndex === move) {
         desc = (<b>{desc}</b>)
       }
 
@@ -118,8 +118,11 @@ class Game extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner;
       console.log(this.hs)
+    } else if(history.length === 10) {
+      status = 'Game Over! Draw!';
     } else {
-      status = 'Next player: ' + (this.props.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      console.log("next:" + this.state.xIsNext + ", " + status)
     }
 
     return (
